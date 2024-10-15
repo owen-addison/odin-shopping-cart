@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Home = () => {
   return (
@@ -44,6 +45,11 @@ const FeatureCard = ({ title, description }) => {
       <p className="text-gray-600">{description}</p>
     </div>
   );
+};
+
+FeatureCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default Home;
