@@ -15,6 +15,11 @@ export default [
           jsx: true,
         },
       },
+      globals: {
+        document: 'readonly',
+        window: 'readonly',
+        // Add any other global variables you're using
+      },
     },
     plugins: {
       'react': reactPlugin,
