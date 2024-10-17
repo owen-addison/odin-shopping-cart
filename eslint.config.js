@@ -18,7 +18,7 @@ export default [
       globals: {
         document: 'readonly',
         window: 'readonly',
-        // Add any other global variables you're using
+        ...eslint.configs.browser.globals,
       },
     },
     plugins: {
