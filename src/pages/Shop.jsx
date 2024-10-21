@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useCart } from '../contexts/CartContext';
 import PropTypes from 'prop-types';
 
 const Shop = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -26,7 +28,7 @@ const Shop = ({ addToCart }) => {
   if (error) return <div className="text-center mt-8 text-red-500">Error: {error}</div>;
 
   return (
-    <div className="w-full max-w-[2000px] mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map(product => (
