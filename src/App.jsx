@@ -15,7 +15,7 @@ const App = () => {
           </Routes>
         </main>
         <footer className="bg-gray-200 text-center py-4">
-          © 2024 Sudsy Delights. All rights reserved.
+          © 2024 Things. All rights reserved.
         </footer>
       </div>
     </Router>

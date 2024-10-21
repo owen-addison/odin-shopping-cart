@@ -5,11 +5,11 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center text-indigo-600 mb-8">Welcome to Sudsy Delights</h1>
+        <h1 className="text-4xl font-bold text-center text-indigo-600 mb-8">Welcome to Things</h1>
         
         <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
           <p className="text-xl text-gray-700 mb-4">
-            Discover our luxurious handcrafted soaps, made with all-natural ingredients for a truly refreshing experience.
+            Discover our wide array of items, objects and things.
           </p>
           <Link 
             to="/shop" 
@@ -21,16 +21,16 @@ const Home = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <FeatureCard 
-            title="All Natural" 
-            description="Our soaps are made with 100% natural ingredients, kind to your skin and the environment."
+            title="Fashion Forward" 
+            description="Stay on trend with our curated selection of clothing and accessories for every style and occasion."
           />
           <FeatureCard 
-            title="Handcrafted" 
-            description="Each bar is carefully handcrafted to ensure the highest quality and attention to detail."
+            title="Tech Essentials" 
+            description="Upgrade your digital life with our range of electronic devices and storage solutions."
           />
           <FeatureCard 
-            title="Variety" 
-            description="From lavender to citrus, we offer a wide range of scents to suit every preference."
+            title="Timeless Jewellery" 
+            description="Add a touch of elegance to any outfit with our exquisite collection of jewellery pieces."
           />
         </div>
       </main>
