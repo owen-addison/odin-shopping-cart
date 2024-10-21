@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useCart } from '../contexts/CartContext';
 import PropTypes from 'prop-types';
 
-const Shop = ({ addToCart }) => {
+const Shop = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
