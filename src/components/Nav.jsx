@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 import PropTypes from 'prop-types';
 
 const Nav = () => {
   const location = useLocation();
+  const { getTotalItems } = useCart();
 
   return (
     <nav className="bg-indigo-600 p-4 w-full">
@@ -10,13 +12,16 @@ const Nav = () => {
         <Link to="/" className="text-white text-2xl font-bold">
           Things
         </Link>
-        <div className="space-x-4">
+        <div className="space-x-4 flex items-center">
           <NavLink to="/" currentPath={location.pathname}>
             Home
           </NavLink>
           <NavLink to="/shop" currentPath={location.pathname}>
             Shop
           </NavLink>
+          <Link to="/cart" className="text-white hover:text-indigo-200 transition-colors duration-200">
+            Cart ({getTotalItems()})
+          </Link>
         </div>
       </div>
     </nav>
