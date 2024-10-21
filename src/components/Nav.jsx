@@ -5,8 +5,8 @@ const Nav = () => {
   const location = useLocation();
 
   return (
-    <nav className="bg-indigo-600 p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="bg-indigo-600 p-4 w-full">
+      <div className="flex justify-between items-center w-full max-w-[2000px] mx-auto">
         <Link to="/" className="text-white text-2xl font-bold">
           Things
         </Link>

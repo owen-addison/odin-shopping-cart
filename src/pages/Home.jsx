@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Home = () => {
   return (
     <div className="min-h-screen bg-gray-100">
-      <main className="container mx-auto px-4 py-8">
+      <main className="w-full max-w-[2000px] mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-center text-indigo-600 mb-8">Welcome to Things</h1>
         
         <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
@@ -19,7 +19,7 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           <FeatureCard 
             title="Fashion Forward" 
             description="Stay on trend with our curated selection of clothing and accessories for every style and occasion."
