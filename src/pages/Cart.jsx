@@ -6,14 +6,17 @@ const Cart = () => {
   return (
     <div className="min-h-screen w-full">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Your Cart</h1>
+        <h1 className="mb-8 text-center text-3xl font-bold">Your Cart</h1>
         {cart.length === 0 ? (
           <p className="text-center">Your cart is empty</p>
         ) : (
-          <div className="w-full max-w-5xl mx-auto">
+          <div className="mx-auto w-full max-w-5xl">
             <ul className="space-y-4">
-              {cart.map(item => (
-                <li key={item.id} className="flex items-center justify-between p-4 border rounded shadow-sm">
+              {cart.map((item) => (
+                <li
+                  key={item.id}
+                  className="flex items-center justify-between rounded border p-4 shadow-sm"
+                >
                   <div className="flex-1">
                     <h2 className="font-bold">{item.title}</h2>
                     <p>Quantity: {item.quantity}</p>
