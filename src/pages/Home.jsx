@@ -3,34 +3,39 @@ import PropTypes from 'prop-types';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <main className="w-full max-w-[2000px] mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center text-indigo-600 mb-8">Welcome to Things</h1>
-        
-        <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
-          <p className="text-xl text-gray-700 mb-4">
-            Discover our wide array of items, objects and things.
+    <div className="min-h-screen bg-gray-50">
+      <main className="container mx-auto px-4 py-12">
+        <h1 className="font-playfair mb-8 text-center text-5xl font-bold text-gray-800">
+          Welcome to Things
+        </h1>
+
+        <div className="mx-auto mb-12 max-w-3xl rounded-lg bg-white p-8 shadow-lg">
+          <p className="mb-6 text-center text-xl text-gray-600">
+            Discover our curated collection of premium items, thoughtfully
+            selected for you.
           </p>
-          <Link 
-            to="/shop" 
-            className="inline-block bg-indigo-600 text-white font-semibold px-6 py-2 rounded hover:bg-indigo-700 transition-colors duration-300"
-          >
-            Shop Now
-          </Link>
+          <div className="text-center">
+            <Link
+              to="/shop"
+              className="inline-block rounded-lg bg-gray-800 px-8 py-3 font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+            >
+              Browse Collection
+            </Link>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-          <FeatureCard 
-            title="Fashion Forward" 
-            description="Stay on trend with our curated selection of clothing and accessories for every style and occasion."
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <FeatureCard
+            title="Timeless Design"
+            description="Each piece in our collection is chosen for its enduring style and quality craftsmanship."
           />
-          <FeatureCard 
-            title="Tech Essentials" 
-            description="Upgrade your digital life with our range of electronic devices and storage solutions."
+          <FeatureCard
+            title="Curated Selection"
+            description="We carefully select each item to ensure it meets our standards for style and quality."
           />
-          <FeatureCard 
-            title="Timeless Jewellery" 
-            description="Add a touch of elegance to any outfit with our exquisite collection of jewellery pieces."
+          <FeatureCard
+            title="Premium Quality"
+            description="Every item in our collection is crafted with attention to detail and premium materials."
           />
         </div>
       </main>
@@ -40,8 +45,10 @@ const Home = () => {
 
 const FeatureCard = ({ title, description }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-xl font-semibold text-indigo-600 mb-2">{title}</h2>
+    <div className="rounded-lg bg-white p-6 shadow-lg transition-transform hover:scale-105">
+      <h2 className="font-playfair mb-3 text-xl font-semibold text-gray-800">
+        {title}
+      </h2>
       <p className="text-gray-600">{description}</p>
     </div>
   );

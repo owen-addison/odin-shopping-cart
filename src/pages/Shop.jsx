@@ -10,30 +10,49 @@ const Shop = () => {
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
-      .then(response => {
+      .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setProducts(data);
         setIsLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         setIsLoading(false);
       });
   }, []);
 
-  if (isLoading) return <div className="text-center mt-8">Loading...</div>;
-  if (error) return <div className="text-center mt-8 text-red-500">Error: {error}</div>;
+  if (isLoading)
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="text-xl text-gray-600">Loading...</div>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="text-xl text-red-500">Error: {error}</div>
+      </div>
+    );
 
   return (
-    <div className="w-full max-w-[2000px] mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} addToCart={addToCart} />
-        ))}
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 py-12">
+        <h1 className="font-playfair mb-12 text-center text-4xl font-bold text-gray-800">
+          Our Collection
+        </h1>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              addToCart={addToCart}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -42,32 +61,50 @@ const Shop = () => {
 const ProductCard = ({ product, addToCart }) => {
   const [quantity, setQuantity] = useState(1);
 
-  const handleIncrement = () => setQuantity(prev => prev + 1);
-  const handleDecrement = () => setQuantity(prev => Math.max(1, prev - 1));
+  const handleIncrement = () => setQuantity((prev) => prev + 1);
+  const handleDecrement = () => setQuantity((prev) => Math.max(1, prev - 1));
   const handleInputChange = (e) => {
     const value = parseInt(e.target.value, 10);
     setQuantity(isNaN(value) ? 1 : Math.max(1, value));
   };
 
   return (
-    <div className="border rounded-lg p-4 flex flex-col">
-      <img src={product.image} alt={product.title} className="w-full h-48 object-contain mb-4" />
-      <h2 className="text-lg font-semibold mb-2">{product.title}</h2>
-      <p className="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
-      <div className="flex items-center mb-4">
-        <button onClick={handleDecrement} className="bg-gray-200 px-2 py-1 rounded-l">-</button>
-        <input 
-          type="number" 
-          min="1" 
-          value={quantity} 
-          onChange={handleInputChange}
-          className="w-16 text-center border-t border-b"
+    <div className="flex flex-col rounded-lg bg-white p-6 shadow-lg">
+      <div className="aspect-w-1 aspect-h-1 mb-4 w-full">
+        <img
+          src={product.image}
+          alt={product.title}
+          className="h-48 w-full object-contain"
         />
-        <button onClick={handleIncrement} className="bg-gray-200 px-2 py-1 rounded-r">+</button>
       </div>
-      <button 
-        onClick={() => addToCart(product, quantity)} 
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mt-auto"
+      <h2 className="font-playfair mb-2 flex-grow text-lg font-semibold">
+        {product.title}
+      </h2>
+      <p className="mb-4 text-gray-600">${product.price.toFixed(2)}</p>
+      <div className="mb-4 flex items-center">
+        <button
+          onClick={handleDecrement}
+          className="rounded-l bg-gray-100 px-3 py-1 hover:bg-gray-200"
+        >
+          -
+        </button>
+        <input
+          type="number"
+          min="1"
+          value={quantity}
+          onChange={handleInputChange}
+          className="w-16 border-y border-gray-200 py-1 text-center"
+        />
+        <button
+          onClick={handleIncrement}
+          className="rounded-r bg-gray-100 px-3 py-1 hover:bg-gray-200"
+        >
+          +
+        </button>
+      </div>
+      <button
+        onClick={() => addToCart(product, quantity)}
+        className="rounded bg-gray-800 px-4 py-2 text-white transition-colors hover:bg-gray-700"
       >
         Add to Cart
       </button>
@@ -76,7 +113,7 @@ const ProductCard = ({ product, addToCart }) => {
 };
 
 Shop.propTypes = {
-  addToCart: PropTypes.func.isRequired,
+  addToCart: PropTypes.func,
 };
 
 ProductCard.propTypes = {
