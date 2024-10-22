@@ -80,7 +80,11 @@ const Cart = () => {
               ))}
             </ul>
             <div className="border-t pt-4">
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-8 flex items-center justify-end gap-4 text-xl">
+                <span className="font-bold">Cart Total:</span>
+                <span className="font-bold">${getCartTotal().toFixed(2)}</span>
+              </div>
+              <div className="flex items-center justify-between">
                 <button
                   onClick={emptyCart}
                   className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
@@ -93,10 +97,6 @@ const Cart = () => {
                 >
                   Checkout
                 </button>
-              </div>
-              <div className="flex items-center justify-between text-xl">
-                <span className="font-bold">Cart Total:</span>
-                <span className="font-bold">${getCartTotal().toFixed(2)}</span>
               </div>
             </div>
           </div>
