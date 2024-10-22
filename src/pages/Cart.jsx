@@ -4,7 +4,7 @@ const Cart = () => {
   const { cart } = useCart();
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="w-full max-w-[2000px] mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center mb-8">Your Cart</h1>
       {cart.length === 0 ? (
         <p className="text-center">Your cart is empty</p>
