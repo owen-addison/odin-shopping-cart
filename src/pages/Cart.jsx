@@ -67,7 +67,7 @@ const Cart = () => {
                       />
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="ml-2 rounded bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
+                        className="ml-2 rounded border-2 border-red-600 px-2 py-1 text-sm text-red-600 hover:bg-red-600 hover:text-white"
                       >
                         Remove
                       </button>
@@ -87,13 +87,13 @@ const Cart = () => {
               <div className="flex items-center justify-between">
                 <button
                   onClick={emptyCart}
-                  className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+                  className="rounded border-2 border-red-600 px-4 py-2 text-red-600 hover:bg-red-600 hover:text-white"
                 >
                   Empty Cart
                 </button>
                 <button
                   onClick={submitOrder}
-                  className="rounded bg-green-500 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-green-600"
+                  className="rounded border-2 border-green-600 px-8 py-3 text-lg font-semibold text-green-600 transition-colors hover:bg-green-600 hover:text-white"
                 >
                   Checkout
                 </button>
