@@ -7,6 +7,7 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [orderStatus, setOrderStatus] = useState('');
 
   const addToCart = (product, quantity) => {
     setCart((prevCart) => {
@@ -50,6 +51,14 @@ export const CartProvider = ({ children }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  const submitOrder = () => {
+    // Mock order submission
+    setOrderStatus('submitted');
+    setCart([]); // Clear the cart
+    // Reset status after 3 seconds
+    setTimeout(() => setOrderStatus(''), 3000);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -58,6 +67,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         emptyCart,
+        submitOrder,
+        orderStatus,
         getTotalItems,
         getCartTotal,
       }}

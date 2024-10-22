@@ -1,8 +1,15 @@
 import { useCart } from '../contexts/CartContext';
 
 const Cart = () => {
-  const { cart, getCartTotal, removeFromCart, updateQuantity, emptyCart } =
-    useCart();
+  const {
+    cart,
+    getCartTotal,
+    removeFromCart,
+    updateQuantity,
+    emptyCart,
+    submitOrder,
+    orderStatus,
+  } = useCart();
 
   const handleQuantityChange = (item, newQuantity) => {
     const quantity = parseInt(newQuantity, 10);
@@ -15,6 +22,20 @@ const Cart = () => {
     <div className="min-h-screen w-full">
       <div className="container mx-auto px-4 py-8">
         <h1 className="mb-8 text-center text-3xl font-bold">Your Cart</h1>
+
+        {/* Order Status Message */}
+        {orderStatus === 'submitted' && (
+          <div className="mb-8 rounded-lg bg-green-100 p-4 text-center text-green-800">
+            <p className="font-medium">
+              Oops... not actually a real shop, but thanks for window shopping!
+              😉
+            </p>
+            <p className="mt-2 text-sm">
+              Your cart has been cleared - feel free to browse some more!
+            </p>
+          </div>
+        )}
+
         {cart.length === 0 ? (
           <p className="text-center">Your cart is empty</p>
         ) : (
@@ -59,12 +80,18 @@ const Cart = () => {
               ))}
             </ul>
             <div className="border-t pt-4">
-              <div className="mb-4 flex justify-end">
+              <div className="mb-4 flex items-center justify-between">
                 <button
                   onClick={emptyCart}
                   className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
                 >
                   Empty Cart
+                </button>
+                <button
+                  onClick={submitOrder}
+                  className="rounded bg-green-500 px-8 py-3 text-lg font-semibold text-white transition-colors hover:bg-green-600"
+                >
+                  Checkout
                 </button>
               </div>
               <div className="flex items-center justify-between text-xl">
