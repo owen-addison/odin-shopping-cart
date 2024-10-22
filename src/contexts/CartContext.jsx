@@ -22,6 +22,26 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
+
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity < 1) {
+      removeFromCart(productId);
+      return;
+    }
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item,
+      ),
+    );
+  };
+
+  const emptyCart = () => {
+    setCart([]);
+  };
+
   const getTotalItems = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
@@ -32,7 +52,15 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, getTotalItems, getCartTotal }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        emptyCart,
+        getTotalItems,
+        getCartTotal,
+      }}
     >
       {children}
     </CartContext.Provider>

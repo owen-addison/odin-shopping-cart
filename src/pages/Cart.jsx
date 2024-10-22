@@ -1,7 +1,15 @@
 import { useCart } from '../contexts/CartContext';
 
 const Cart = () => {
-  const { cart, getCartTotal } = useCart();
+  const { cart, getCartTotal, removeFromCart, updateQuantity, emptyCart } =
+    useCart();
+
+  const handleQuantityChange = (item, newQuantity) => {
+    const quantity = parseInt(newQuantity, 10);
+    if (!isNaN(quantity)) {
+      updateQuantity(item.id, quantity);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full">
@@ -15,19 +23,50 @@ const Cart = () => {
               {cart.map((item) => (
                 <li
                   key={item.id}
-                  className="flex items-center justify-between rounded border p-4 shadow-sm"
+                  className="flex flex-wrap items-center justify-between gap-4 rounded border p-4 shadow-sm"
                 >
-                  <div className="flex-1">
+                  <div className="min-w-[200px] flex-1">
                     <h2 className="font-bold">{item.title}</h2>
-                    <p>Quantity: {item.quantity}</p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <label
+                        htmlFor={`quantity-${item.id}`}
+                        className="text-sm"
+                      >
+                        Quantity:
+                      </label>
+                      <input
+                        id={`quantity-${item.id}`}
+                        type="number"
+                        min="1"
+                        value={item.quantity}
+                        onChange={(e) =>
+                          handleQuantityChange(item, e.target.value)
+                        }
+                        className="w-20 rounded border px-2 py-1"
+                      />
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className="ml-2 rounded bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                   <p className="font-semibold">
-                    Price: ${(item.price * item.quantity).toFixed(2)}
+                    ${(item.price * item.quantity).toFixed(2)}
                   </p>
                 </li>
               ))}
             </ul>
             <div className="border-t pt-4">
+              <div className="mb-4 flex justify-end">
+                <button
+                  onClick={emptyCart}
+                  className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+                >
+                  Empty Cart
+                </button>
+              </div>
               <div className="flex items-center justify-between text-xl">
                 <span className="font-bold">Cart Total:</span>
                 <span className="font-bold">${getCartTotal().toFixed(2)}</span>
