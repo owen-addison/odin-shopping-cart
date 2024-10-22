@@ -1,7 +1,7 @@
 import { useCart } from '../contexts/CartContext';
 
 const Cart = () => {
-  const { cart } = useCart();
+  const { cart, getCartTotal } = useCart();
 
   return (
     <div className="min-h-screen w-full">
@@ -11,7 +11,7 @@ const Cart = () => {
           <p className="text-center">Your cart is empty</p>
         ) : (
           <div className="mx-auto w-full max-w-5xl">
-            <ul className="space-y-4">
+            <ul className="mb-8 space-y-4">
               {cart.map((item) => (
                 <li
                   key={item.id}
@@ -27,6 +27,12 @@ const Cart = () => {
                 </li>
               ))}
             </ul>
+            <div className="border-t pt-4">
+              <div className="flex items-center justify-between text-xl">
+                <span className="font-bold">Cart Total:</span>
+                <span className="font-bold">${getCartTotal().toFixed(2)}</span>
+              </div>
+            </div>
           </div>
         )}
       </div>
